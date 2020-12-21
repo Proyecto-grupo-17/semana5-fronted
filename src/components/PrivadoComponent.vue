@@ -14,7 +14,7 @@
           width="150"
           @click.prevent="GoHome"
         />
-            <v-toolbar-title>Privado</v-toolbar-title>
+            <v-toolbar-title>Bienvenido</v-toolbar-title>
             <v-spacer></v-spacer>
               <v-btn @click="Salir()" :class="'text white--text'"
                     >Salir</v-btn
@@ -65,11 +65,11 @@
 </template>
 
 <script>
+import jws from "jwt-decode";
 export default {
-    name:'PrivateComponent',
+        name:'PrivateComponent',
         data(){
         return{
-            
         drawer: null,
         selectedItem:1,
         items: [

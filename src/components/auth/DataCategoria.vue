@@ -24,9 +24,7 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
-              color="primary"
-              dark
-              class="mb-2"
+              class="mb-2 text white--text"
               v-bind="attrs"
               v-on="on"
             >
@@ -201,7 +199,8 @@ import axios from 'axios'
 
         listar(){
             let me=this;          
-            axios.get('categoria/list').then(function (response){
+            axios.get('categoria/list')
+            .then(function (response){
                 me.categorias=response.data;
                 me.cargando = false;
                 }).catch(function(error){

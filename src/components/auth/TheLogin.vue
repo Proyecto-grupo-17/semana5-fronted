@@ -71,7 +71,7 @@ export default {
             })
             .then(data =>{
                 console.log(data);
-                swal("Acceso permitido", "Puede ingresar a la sección privada", "success")
+                swal("Login correcto", "Puede ingresar a la sección privada", "success")
                 this.$store.dispatch("guardarToken",data.tokenReturn);       
                 this.$router.push({name: 'Privado'});
             })

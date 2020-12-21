@@ -23,10 +23,8 @@
           max-width="500px"
         >
           <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              color="primary"
-              dark
-              class="mb-2"
+            <v-btn   
+              class="mb-2 text white--text"
               v-bind="attrs"
               v-on="on"
             >
@@ -221,11 +219,12 @@ import axios from 'axios'
 
         listar(){
             let me=this;          
-            axios.get('usuario/list').then(function (response){
-                me.usuarios=response.data;
+            axios.get('usuario/list')
+            .then(function (response){
+              me.usuarios=response.data;
+              me.cargando = false;
                 }).catch(function(error){
                     console.log(error);
-                    me.cargando = false;
                 });
             },
 
