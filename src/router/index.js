@@ -51,6 +51,8 @@ const routes = [
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "categoria" */ '../views/Categoria.vue'),
         meta:{
+          is_admin: true,
+          is_vendor: true,
           auth: true
         },
       },
@@ -62,6 +64,7 @@ const routes = [
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "usuario" */ '../views/Usuario.vue'),
         meta:{
+          is_admin:true,
           auth: true
         },
       },
@@ -78,14 +81,57 @@ const routes = [
       }
     ]
   },
-
-
 ]
 
 
 const router = new VueRouter({
-
   routes
+})
+
+import VueJwtDecode from 'vue-jwt-decode'
+import swal from "sweetalert"; 
+
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.auth)) {
+      if (localStorage.getItem('token') == null) {
+          next({
+              path: '/login',
+              params: { nextUrl: to.fullPath }
+          })
+      } else {
+        let user= VueJwtDecode.decode(localStorage.getItem('token'))
+          if(to.matched.some(record => record.meta.is_admin)) {
+              if(user.rol == "Administrador"){
+                  next()
+              }
+              else{
+                if (to.matched.some(record => record.meta.is_vendor))
+                if(user.rol == "Cajero"){
+                  next()
+                } else{
+                  swal("Acceso denegado", "Lo siento, no tienes permisos para entrar a la pagina", "warning")
+                  next({ name: 'Privado'})
+                }
+                else{
+                  next({ name: 'Privado'})
+                  swal("Acceso denegado", "Lo siento, no tienes permisos para entrar a la pagina", "warning")
+                }
+              }
+          } else
+            {
+                next()
+            }
+      }
+  } else if(to.matched.some(record => record.meta.public)) {
+      if(localStorage.getItem('token') == null){
+          next()
+      }
+      else{
+          next({ name: 'Privado'})
+      }
+  }else {
+      next()
+  }
 })
 
 export default router

@@ -24,9 +24,7 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
-              color="primary"
-              dark
-              class="mb-2"
+              class="mb-2 text white--text"
               v-bind="attrs"
               v-on="on"
             >
@@ -240,7 +238,7 @@ import axios from 'axios'
             let me=this;          
             axios.get('articulo/list').then(function (response){
                 me.articulos=response.data;
-                this.cargando = false;
+                me.cargando = false;
                 }).catch(function(error){
                     console.log(error);
                     return error;
