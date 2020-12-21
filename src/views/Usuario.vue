@@ -14,6 +14,9 @@
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title>Menu</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn @click="Salir()" :class="'text white--text'"
+        >Salir</v-btn>
     </v-app-bar>
 
     <v-navigation-drawer 
@@ -79,5 +82,13 @@ export default {
         { text: 'Usuario', icon: 'mdi-account',  ruta: 'Usuario'  },
       ],
     }),
+    methods: {
+          async GoHome() {
+          this.$router.push('/');
+          },
+          async Salir(){
+            this.$store.dispatch('salir')
+          }
+        }
 }
 </script>

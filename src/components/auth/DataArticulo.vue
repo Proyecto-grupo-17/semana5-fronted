@@ -238,7 +238,7 @@ import axios from 'axios'
  
         listar(){
             let me=this;          
-            axios.get('http://localhost:3000/api/articulo/list').then(function (response){
+            axios.get('articulo/list').then(function (response){
                 me.articulos=response.data;
                 this.cargando = false;
                 }).catch(function(error){
@@ -248,7 +248,7 @@ import axios from 'axios'
             },
         listarCategorias(){
             let me=this;          
-            axios.get('http://localhost:3000/api/categoria/list').then(function (response){
+            axios.get('categoria/list').then(function (response){
                 me.categorias=response.data;
                 }).catch(function(error){
                     console.log(error);
@@ -270,7 +270,7 @@ import axios from 'axios'
 
       deleteItemConfirm () {
         if (this.editedItem.estado === 1) {
-            axios.put("http://localhost:3000/api/articulo/deactivate", {
+            axios.put("articulo/deactivate", {
             "id": this.editedItem.id
 
             })
@@ -284,7 +284,7 @@ import axios from 'axios'
           //Object.assign(this.desserts[this.editedIndex], this.editedItem)
         } else {
           //this.desserts.push(this.editedItem)
-            axios.put("http://localhost:3000/api/articulo/activate", {
+            axios.put("articulo/activate", {
             "id": this.editedItem.id
 
             })
@@ -318,7 +318,7 @@ import axios from 'axios'
 
       save () {
         if (this.editedIndex > -1) {
-            axios.put("http://localhost:3000/api/articulo/update", {
+            axios.put("articulo/update", {
             "id": this.editedItem.id, 
             "nombre": this.editedItem.nombre, 
             "codigo": this.editedItem.codigo,
@@ -336,7 +336,7 @@ import axios from 'axios'
           //Object.assign(this.desserts[this.editedIndex], this.editedItem)
         } else {
           //this.desserts.push(this.editedItem)
-            axios.post("http://localhost:3000/api/articulo/add", {
+            axios.post("articulo/add", {
             "nombre": this.editedItem.nombre, 
             "codigo": this.editedItem.codigo,
             "descripcion": this.editedItem.descripcion,

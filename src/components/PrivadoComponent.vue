@@ -1,8 +1,24 @@
 <template>
-    <v-app id="inspire">
-        <v-app-bar app>
+    <v-app>
+
+        <v-app-bar 
+        app
+        color="primary">
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+            <v-img
+          alt="DHAMS Logo"
+          class="shrink mr-2"
+          contain
+          src="../assets/Logo2.png"
+          transition="scale-transition"
+          width="150"
+          @click.prevent="GoHome"
+        />
             <v-toolbar-title>Privado</v-toolbar-title>
+            <v-spacer></v-spacer>
+              <v-btn @click="Salir()" :class="'text white--text'"
+                    >Salir</v-btn
+                  >
         </v-app-bar>
 
         <v-navigation-drawer
@@ -55,16 +71,23 @@ export default {
         return{
             
         drawer: null,
-        selectitem:1,
+        selectedItem:1,
         items: [
         { text: 'Home', icon: 'mdi-home', ruta: 'Home' },
         { text: 'Categoria', icon: 'mdi-file',  ruta: 'Categoria'  },
         { text: 'Articulo', icon: 'mdi-card-outline',  ruta: 'Articulo'  },
         { text: 'Usuario', icon: 'mdi-account',  ruta: 'Usuario'  },
       ],
-
         }
- 
+
+        },
+        methods: {
+          async GoHome() {
+          this.$router.push('/');
+          },
+          async Salir(){
+            this.$store.dispatch('salir')
+          }
         }
 }
 </script>

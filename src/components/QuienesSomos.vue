@@ -17,12 +17,11 @@
             :cols="card.flex"
             md="3"
           >
-            <v-card height="440px">
+            <v-card>
               <v-img
                 :src="card.src"
                 class="white--text align-end"
                 gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                height="300px"
               >
                 <!-- <v-card-title v-text="card.title"></v-card-title> -->
                 

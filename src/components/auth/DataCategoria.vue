@@ -201,7 +201,7 @@ import axios from 'axios'
 
         listar(){
             let me=this;          
-            axios.get('http://localhost:3000/api/categoria/list').then(function (response){
+            axios.get('categoria/list').then(function (response){
                 me.categorias=response.data;
                 me.cargando = false;
                 }).catch(function(error){
@@ -225,7 +225,7 @@ import axios from 'axios'
 
       deleteItemConfirm () {
         if (this.editedItem.estado === 1) {
-            axios.put("http://localhost:3000/api/categoria/deactivate", {
+            axios.put("categoria/deactivate", {
             "id": this.editedItem.id
 
             })
@@ -239,7 +239,7 @@ import axios from 'axios'
           //Object.assign(this.desserts[this.editedIndex], this.editedItem)
         } else {
           //this.desserts.push(this.editedItem)
-            axios.put("http://localhost:3000/api/categoria/activate", {
+            axios.put("categoria/activate", {
             "id": this.editedItem.id
 
             })
@@ -272,7 +272,7 @@ import axios from 'axios'
 
       save () {
         if (this.editedIndex > -1) {
-            axios.put("http://localhost:3000/api/categoria/update", {
+            axios.put("categoria/update", {
             "id": this.editedItem.id, 
             "nombre": this.editedItem.nombre, 
             "descripcion": this.editedItem.descripcion
@@ -287,7 +287,7 @@ import axios from 'axios'
           //Object.assign(this.desserts[this.editedIndex], this.editedItem)
         } else {
           //this.desserts.push(this.editedItem)
-            axios.post("http://localhost:3000/api/categoria/add", {
+            axios.post("categoria/add", {
             "nombre": this.editedItem.nombre, 
             "descripcion": this.editedItem.descripcion,
             "estado": this.editedItem.estado,
