@@ -221,7 +221,7 @@ import axios from 'axios'
 
         listar(){
             let me=this;          
-            axios.get('http://localhost:3000/api/usuario/list').then(function (response){
+            axios.get('usuario/list').then(function (response){
                 me.usuarios=response.data;
                 }).catch(function(error){
                     console.log(error);
@@ -243,7 +243,7 @@ import axios from 'axios'
 
       deleteItemConfirm () {
         if (this.editedItem.estado === 1) {
-            axios.put("http://localhost:3000/api/usuario/deactivate", {
+            axios.put("usuario/deactivate", {
             "id": this.editedItem.id
 
             })
@@ -257,7 +257,7 @@ import axios from 'axios'
           //Object.assign(this.desserts[this.editedIndex], this.editedItem)
         } else {
           //this.desserts.push(this.editedItem)
-            axios.put("http://localhost:3000/api/usuario/activate", {
+            axios.put("usuario/activate", {
             "id": this.editedItem.id
 
             })
@@ -290,7 +290,7 @@ import axios from 'axios'
 
       save () {
         if (this.editedIndex > -1) {
-            axios.put("http://localhost:3000/api/usuario/update", {
+            axios.put("usuario/update", {
             "id": this.editedItem.id, 
             "nombre": this.editedItem.nombre, 
             "rol": this.editedItem.rol,
@@ -307,7 +307,7 @@ import axios from 'axios'
           //Object.assign(this.desserts[this.editedIndex], this.editedItem)
         } else {
           //this.desserts.push(this.editedItem)
-            axios.post("http://localhost:3000/api/usuario/add", {
+            axios.post("usuario/add", {
             "nombre": this.editedItem.nombre, 
             "rol": this.editedItem.rol,
             "email": this.editedItem.email,
